@@ -1,0 +1,167 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      body {
+        margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(
+    180deg,
+    #ffe6f1 0%,
+    #fff1f6 55%,
+    #ffffff 100%
+  );
+  background-attachment: fixed;
+      }
+
+      main {
+        max-width: 960px;
+        margin: 3rem auto 4rem;
+        padding: 0 1.5rem;
+      }
+
+      .hero {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        animation: floatIn 0.7s ease-out;
+      }
+
+      .hero:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
+      }
+
+      .hero-title {
+        margin: 0 0 1rem;
+        font-size: 2.4rem;
+      }
+
+      .hero-sub {
+        margin: 0 0 1.5rem;
+        color: rgb(100, 116, 139);
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(244, 114, 182, 0.12);
+        font-size: 0.9rem;
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          background 0.18s ease;
+        box-shadow: 0 6px 14px rgba(15, 23, 42, 0.04);
+      }
+
+      .tag:hover {
+        transform: translateY(-2px);
+        background: rgba(244, 114, 182, 0.2);
+        box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+      }
+
+      /* 进场小动画：卡片轻轻浮上来 */
+      @keyframes floatIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 标签一个个轻轻浮上来（有点“出场顺序”的感觉） */
+      .hero-tags li:nth-child(1) {
+        animation: fadeUp 0.5s ease-out 0.1s both;
+      }
+      .hero-tags li:nth-child(2) {
+        animation: fadeUp 0.5s ease-out 0.2s both;
+      }
+      .hero-tags li:nth-child(3) {
+        animation: fadeUp 0.5s ease-out 0.3s both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 720px) {
+        main {
+          margin: 2rem auto 3rem;
+        }
+
+        .hero {
+          padding: 2rem 1.5rem;
+        }
+
+        .hero-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+<main>
+  <section class="hero">
+    <h1 class="hero-title">
+      👩‍💻 Hi, this is Xinyuan’s blog
+      <span class="spark" aria-hidden="true">
+        <svg viewBox="0 0 64 24" width="64" height="24" fill="none">
+          <circle cx="8" cy="12" r="4" fill="currentColor" opacity="0.9" />
+          <circle cx="32" cy="6" r="3" fill="currentColor" opacity="0.8" />
+          <circle cx="32" cy="18" r="3" fill="currentColor" opacity="0.8" />
+          <circle cx="56" cy="12" r="4" fill="currentColor" opacity="0.9" />
+          <path d="M12 12 L28 7" stroke="currentColor" stroke-width="2" opacity="0.5" />
+          <path d="M12 12 L28 17" stroke="currentColor" stroke-width="2" opacity="0.5" />
+          <path d="M36 7 L52 12" stroke="currentColor" stroke-width="2" opacity="0.5" />
+          <path d="M36 17 L52 12" stroke="currentColor" stroke-width="2" opacity="0.5" />
+        </svg>
+      </span>
+    </h1>
+
+    <p class="hero-sub">Hi, I’m Xinyuan.</p>
+    <p class="hero-sub">A small, quiet space for notes and ongoing learning.</p>
+    <p class="hero-sub">
+      Here I document what I’m working on, what I’m learning, and how things slowly take shape over time.
+    </p>
+    <p class="hero-sub">
+      Topics include networking, Japanese, and life in Japan — not as finished answers, but as things in progress.
+    </p>
+  </section>
+</main>
+
+
+    <Footer />
+  </body>
+</html>

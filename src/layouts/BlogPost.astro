@@ -1,0 +1,149 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+
+    <style>
+      main {
+        width: calc(100% - 2em);
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .hero-image {
+        width: 100%;
+      }
+
+      .hero-image img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: var(--box-shadow);
+      }
+
+      .prose {
+        width: 720px;
+        max-width: calc(100% - 2em);
+        margin: auto;
+        padding: 1em;
+        color: rgb(var(--gray-dark));
+        line-height: 1.9;
+      }
+
+      .title {
+        margin-bottom: 1em;
+        padding: 1em 0;
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      .title h1 {
+        margin: 0 0 0.5em 0;
+        font-size: 2.2rem;
+      }
+
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+        font-size: 0.95rem;
+      }
+
+      .last-updated-on {
+        font-style: italic;
+        font-size: 0.85rem;
+      }
+
+      /* ===== 只缩小二级标题（真正生效版）===== */
+      .prose :where(h2) {
+        font-size: 1.1rem !important;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        color: #111827;
+      }
+
+      /* 三级标题（可选，已调得很克制） */
+      .prose :where(h3) {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-top: 1.2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      /* 列表样式 */
+      .prose ul {
+        padding-left: 1.2rem;
+        margin: 0.6rem 0 1.2rem;
+      }
+
+      .prose li {
+        margin: 0.4rem 0;
+      }
+
+      /* 手机端 */
+      @media (max-width: 720px) {
+        .prose {
+          padding: 0.75em;
+        }
+
+        .title h1 {
+          font-size: 1.8rem;
+        }
+
+        .prose :where(h2) {
+          font-size: 1.15rem;
+        }
+
+        .prose :where(h3) {
+          font-size: 1.05rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <article>
+        <div class="hero-image">
+          {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+        </div>
+
+        <div class="prose">
+          <div class="title">
+            <div class="date">
+              <FormattedDate date={pubDate} />
+              {
+                updatedDate && (
+                  <div class="last-updated-on">
+                    Last updated on <FormattedDate date={updatedDate} />
+                  </div>
+                )
+              }
+            </div>
+
+            <h1>{title}</h1>
+            <hr />
+          </div>
+
+          <slot />
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+  </body>
+</html>

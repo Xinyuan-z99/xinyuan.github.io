@@ -1,0 +1,124 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={`About | ${SITE_TITLE}`} description="About Xinyuan" />
+
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          sans-serif;
+        background: linear-gradient(
+  180deg,
+  #eaf3ff 0%,
+  #f3f7ff 55%,
+  #ffffff 100%
+        );
+        background-attachment: fixed;
+      }
+
+      /* ===== About 页面布局 ===== */
+      .about {
+        max-width: 960px;
+        margin: 3rem auto 4rem;
+        padding: 0 1.5rem;
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      /* ===== 卡片样式 ===== */
+      .card {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 24px;
+        padding: 2.2rem 2rem;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.5rem;
+      }
+
+      p {
+        margin: 0.5rem 0 0;
+        line-height: 1.8;
+        color: rgb(100, 116, 139);
+      }
+
+      ul {
+        margin: 0.75rem 0 0;
+        padding-left: 1.2rem;
+        line-height: 1.9;
+        color: rgb(100, 116, 139);
+      }
+
+      /* ===== 响应式 ===== */
+      @media (max-width: 720px) {
+        .about {
+          margin: 2rem auto 3rem;
+        }
+
+        .card {
+          padding: 1.8rem 1.5rem;
+        }
+
+        h1 {
+          font-size: 1.9rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header />
+
+    <!-- ===== About 内容开始 ===== -->
+    <main class="about">
+      <section class="card">
+        <h1>About Me</h1>
+        <p>
+          Hi, I’m Xinyuan. I’m a network engineer in Japan. I write about
+          networking, Japanese learning, and life in Japan.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>What I write</h2>
+        <ul>
+          <li>📡 Networking &amp; IT (Switch / AP / DNAC / WLC )</li>
+          <li>🇯🇵 Japanese learning (business Japanese, shadowing)</li>
+          <li>🌱 Life &amp; reflection in Japan</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Contact</h2>
+        <p>
+          You can find me on social platforms via the icons in the top-right
+          corner.
+        </p>
+      </section>
+    </main>
+    <!-- ===== About 内容结束 ===== -->
+
+    <Footer />
+  </body>
+</html>
